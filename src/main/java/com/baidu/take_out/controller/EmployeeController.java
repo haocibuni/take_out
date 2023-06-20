@@ -7,10 +7,10 @@ import com.baidu.take_out.entity.Employee;
 //import com.baidu.take_out.entity.Orders;
 import com.baidu.take_out.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.util.DigestUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -94,17 +94,14 @@ public class EmployeeController {
         //设置初始密码为123456，要进行md5加密处理
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
 
-//        employee.setCreateTime(LocalDateTime.now());
-//        employee.setUpdateTime(LocalDateTime.now());
-//
-//        //获得当前登录用户的id
-//        Long empId = (Long) request.getSession().getAttribute("employee");
-//
-//        employee.setCreateUser(empId);
-//        employee.setUpdateUser(empId);
+        employee.setCreateTime(LocalDateTime.now());
+        employee.setUpdateTime(LocalDateTime.now());
 
+//        获得当前登录用户的id
+        Long empId = (Long) request.getSession().getAttribute("employee");
+        employee.setCreateUser(empId);
+        employee.setUpdateUser(empId);
         employeeService.save(employee);
-
         return R.success("新增员工成功");
     }
 
@@ -126,7 +123,7 @@ public class EmployeeController {
         LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper<>();
 
         //添加过滤条件
-        queryWrapper.like(!StringUtils.isEmpty(name),Employee::getName,name);
+        queryWrapper.like(!StringUtils.isNotEmpty(name),Employee::getName,name);
 
         //添加排序条件
         queryWrapper.orderByDesc(Employee::getUpdateTime);
