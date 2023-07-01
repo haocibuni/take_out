@@ -20,7 +20,7 @@ public class R<T> implements Serializable {
 
     private String msg; //错误信息
 
-    private T data; //数据
+    private T data; //数据data
 
     private Map map = new HashMap(); //动态数据
 
