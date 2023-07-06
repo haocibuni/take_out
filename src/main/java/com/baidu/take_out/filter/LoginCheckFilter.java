@@ -17,6 +17,7 @@ import java.io.IOException;
  */
 @Slf4j
 @WebFilter(filterName = "loginCheckFilter",urlPatterns = "/*")
+
 public class LoginCheckFilter implements Filter {
 
     //路径匹配器，支持通配符
@@ -36,6 +37,7 @@ public class LoginCheckFilter implements Filter {
         String[] urls = new String[]{
                 "/employee/login",//登录
                 "/employee/logout",//登出
+                "/employee/page",//登出
                 "/backend/**",//请求静态资源
                 "/front/**",//请求前端静态资源
                 "/common/**",
