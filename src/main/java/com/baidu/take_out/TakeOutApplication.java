@@ -7,6 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @Slf4j
 @SpringBootApplication
+//拦截器
 @ServletComponentScan
 public class TakeOutApplication {
     public static void main(String[] args) {
