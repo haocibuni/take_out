@@ -40,11 +40,10 @@ public class CategoryController {
     public R<Page> page(int page,int pageSize) {
         //分页构造器
         Page<Category> pageInfo = new Page<>(page,pageSize);
-        //条件构造器
+        //条件构造器 wrapper封装器
         LambdaQueryWrapper<Category> queryWrapper = new LambdaQueryWrapper<>();
-        //添加排序条件，根据sort进行排序
+        //添加排序条件，根据实体类Category sort键进行升序排序
         queryWrapper.orderByAsc(Category::getSort);
-
         //分页查询
         categoryService.page(pageInfo,queryWrapper);
         return R.success(pageInfo);
@@ -55,12 +54,14 @@ public class CategoryController {
      * @param ids
      * @return
      */
-//    @DeleteMapping
-//    public R<String> delete(Long ids) {
-//        log.info("删除分类，id为: {}",ids);
-//        categoryService.remove(ids);
-//        return R.success("分类信息删除成功");
-//    }
+    @DeleteMapping
+    public R<String> delete(Long ids) {
+        log.info("删除分类，id为: {}",ids);
+//        categoryService.removeById(ids);
+//      自定义删除方法，避免删除有菜品和套餐的分类
+        categoryService.remove(ids);
+        return R.success("分类信息删除成功");
+    }
 
     /**
      * 根据id修改分类信息

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
- * 全局异常处理
+ * 全局异常处理器
  */
 @ControllerAdvice(annotations = {RestController.class, Controller.class})
 @ResponseBody
@@ -35,9 +35,9 @@ public class GlobalExceptionHandler {
      * @param ex
      * @return
      */
-//    @ExceptionHandler(CustomException.class)
-//    public R<String> exceptionHandler(CustomException ex){
-//        log.error(ex.getMessage());
-//        return R.error(ex.getMessage());
-//    }
+    @ExceptionHandler(CustomException.class)
+    public R<String> exceptionHandler(CustomException ex){
+        log.error(ex.getMessage());
+        return R.error(ex.getMessage());
+    }
 }
