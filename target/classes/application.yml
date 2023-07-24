@@ -19,4 +19,4 @@ mybatis-plus:
     db-config:
       id-type: ASSIGN_ID
 takeout:
-    path: D:\code\mavenprojects\
+    path: /Users/wulei/Code/java_project/take_out
