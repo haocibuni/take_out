@@ -208,9 +208,7 @@ public class DishController {
         queryWrapper.eq(Dish::getStatus,1);
         //添加排序条件
         queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
-
         List<Dish> list = dishService.list(queryWrapper);
-
         dishDtoList = list.stream().map((item) ->{
             DishDto dishDto = new DishDto();
 
@@ -224,7 +222,6 @@ public class DishController {
                 String categoryName = category.getName();
                 dishDto.setCategoryName(categoryName);
             }
-
             //当前菜品的id
             Long dishId = item.getId();
             LambdaQueryWrapper<DishFlavor> lambdaQueryWrapper = new LambdaQueryWrapper<>();

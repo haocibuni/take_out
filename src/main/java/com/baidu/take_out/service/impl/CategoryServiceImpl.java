@@ -39,7 +39,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
             throw new CustomException("当前分类下关联了菜品，不能删除");
         }
 
-
         //查询当前分类是否关联了套餐，如果已经关联，抛出一个业务异常
         LambdaQueryWrapper<Setmeal> setmealLambdaQueryWrapper = new LambdaQueryWrapper<>();
         //添加查询条件，根据分类id进行查询

@@ -93,7 +93,6 @@ public class EmployeeController {
 
         //设置初始密码为123456，要进行md5加密处理
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
-
 //        employee.setCreateTime(LocalDateTime.now());
 //        employee.setUpdateTime(LocalDateTime.now());
 //
@@ -102,9 +101,7 @@ public class EmployeeController {
 //
 //        employee.setCreateUser(empId);
 //        employee.setUpdateUser(empId);
-
         employeeService.save(employee);
-
         return R.success("新增员工成功");
     }
 
